@@ -159,7 +159,6 @@ export const deleteFromWordList = (deletedWord) =>{
 export const fetchLists = () => async (dispatch,getState) => {
     const {userId} = getState().auth
     const response = await axios.get(`https://practice-my-spelling.herokuapp.com/users?userId=${userId}`)
-    console.log(response)
     if (userId===null){
        return         
     }
