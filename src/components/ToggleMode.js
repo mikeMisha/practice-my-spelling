@@ -10,7 +10,10 @@ const ToggleSwitch = (props) => {
 				type="checkbox"
 				id="toggleSwitch"
 			/>
-			<label className="form-check-label px-1" htmlFor="flexSwitchCheckDefault">
+			<label
+				className="form-check-label text-nowrap px-1"
+				htmlFor="flexSwitchCheckDefault"
+			>
 				{props.label}
 			</label>
 		</div>

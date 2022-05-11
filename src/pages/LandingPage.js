@@ -61,9 +61,8 @@ const LandingPage = () => {
 								transition={{ delay: 2 }}
 							>
 								<em>
-									"I fear not the man who has practiced 10,000 kicks once, but I
-									fear the man who has practiced one kick 10,000 times." -Bruce
-									Lee
+									"I fear not the man who has practiced 10,000 kicks once, but I fear the
+									man who has practiced one kick 10,000 times." -Bruce Lee
 								</em>
 							</motion.p>
 						</div>
@@ -104,8 +103,8 @@ const LandingPage = () => {
 							<span className="underline">Practice makes Perfect</span>
 						</div>
 						<div className="text-light lead font-weight-normal fn-fam-pop px-3">
-							Build up your spelling skills! Anytime you run into a spelling
-							problem, just add it to the word list and practice away!
+							Build up your spelling skills! Anytime you run into a spelling problem,
+							just add it to the word list and practice away!
 						</div>
 					</div>
 					<div className="col-lg-5 mx-auto my-5">
@@ -125,10 +124,9 @@ const LandingPage = () => {
 							<span className="underline">How does it work?</span>
 						</div>
 						<div className="text-light lead font-weight-normal fn-fam-pop px-3">
-							Simply add the words you wish to the word box, choose how many
-							times you want to spell each word, and practice away! The spelling
-							word changes color as you type each letter, so you know where you
-							went wrong!
+							Simply add the words you wish to the word box, choose how many times you
+							want to spell each word, and practice away! The spelling word changes
+							color as you type each letter, so you know where you went wrong!
 						</div>
 					</div>
 				</div>

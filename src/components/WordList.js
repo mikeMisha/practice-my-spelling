@@ -29,7 +29,6 @@ const WordList = ({ wordList, onWordClick, onDelete }) => {
 					initial={{ opacity: 0, y: 0 }}
 					animate={{ opacity: 1, y: 0 }}
 					exit={{ opacity: 0 }}
-					layout={true}
 					transition={{ duration: 0.2 }}
 					style={{ position: "relative" }}
 				>
@@ -44,6 +43,7 @@ const WordList = ({ wordList, onWordClick, onDelete }) => {
 			);
 		});
 	};
+
 	return (
 		<LayoutGroup id="wordlist">
 			<motion.div

@@ -77,7 +77,14 @@ const PracticePage = (props) => {
 								<h5 className="text-light text-center lead mt-3">
 									Practice spelling words over & over!
 								</h5>
+								{!isAuthenticated && (
+									<div class="pop-up">
+										<i class="bi bi-info-circle-fill pe-1"></i> Sign in now to save your
+										wordlist!
+									</div>
+								)}
 							</div>
+
 							<SettingsContainer />
 							<AddWordContainer exitBeforeEnter={true} />
 							<motion.div

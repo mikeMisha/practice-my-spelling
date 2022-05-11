@@ -18,8 +18,11 @@ const SpellingContainer = (props) => {
 		selectedReps,
 		setSpellInput,
 	} = props;
+
 	var isCorrect = userInput === wordList[wordIndex];
+
 	const [invInputColor, setInvInputColor] = useState("");
+
 	const dropInContainer = {
 		hidden: {
 			opacity: 0,
@@ -38,6 +41,7 @@ const SpellingContainer = (props) => {
 			opacity: 0,
 		},
 	};
+
 	const dropInBground = {
 		hidden: {
 			height: 0,

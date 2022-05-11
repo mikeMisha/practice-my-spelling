@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const WordListContainer = (props) => {
 	const { deleteFromWordList, setWordIndex, setSpellInput, lists } = props;
+
 	useEffect(() => {
 		if (props.isSignedIn) {
 			props.setCurrentList({

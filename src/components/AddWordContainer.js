@@ -82,8 +82,8 @@ const AddWordContainer = (props) => {
 	return (
 		<div>
 			<small className="d-flex justify-content-center pt-4 pb-1">
-				<i className="bi bi-info-circle-fill pe-1"></i> You can add more then
-				one word at a time by seprating words with commas or spaces.
+				<i className="bi bi-info-circle-fill pe-1"></i> You can add more then one
+				word at a time by seprating words with commas or spaces.
 			</small>
 			<div className="d-flex justify-content-center pt-1">
 				<AddWordForm
