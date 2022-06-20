@@ -1,10 +1,6 @@
 # Practice My Spelling
 
-#### _online spelling tool to help practice spelling._
-
-Check it out: https://practicemyspelling.com/
-
-
+#### _online app to practice spelling through repation!_
 
 ## Technologies Used
 
