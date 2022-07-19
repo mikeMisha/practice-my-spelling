@@ -67,7 +67,7 @@ export const createWordList = ({
       }
 
       const response = await axios.put(
-        `https://practice-my-spelling.herokuapp.com/users/${userId}`,
+        process.env.REACT_APP_HEROKU_DB + userId,
         { lists }
       );
       console.log(response);
