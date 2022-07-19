@@ -1,6 +1,6 @@
 # Practice My Spelling
 
-#### _online app to practice spelling through repation!_
+#### _online app to practice spelling through repetition!_
 
 ## Technologies Used
 
