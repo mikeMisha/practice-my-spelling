@@ -70,7 +70,7 @@ export const createWordList = ({
         process.env.REACT_APP_HEROKU_DB + userId,
         { lists }
       );
-      console.log(response);
+     
       dispatch({
         type: 'CREATE_WORDLIST',
         payload: {
