@@ -4,3 +4,5 @@
 /node_modules
 #htaccess
 .htaccess
+
+/build
