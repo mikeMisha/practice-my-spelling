@@ -29,9 +29,11 @@ const WordListContainer = (props) => {
     <AnimatePresence>
       <motion.div
         id="word-list-container"
-        className="col sidebar d-flex flex-column bg-gray wrap-item rounded-3"
+        className=" sidebar d-flex flex-column bg-gray wrap-item rounded-3  w-100 h-100"
       >
-        <h2 className="text-light text-center pt-3">Word List</h2>
+        <h2 className="text-light text-center py-3 border-bottom  border-3 ">
+          Word List
+        </h2>
         <WordList onWordClick={onWordClick} onDelete={onWordDelete} />
       </motion.div>
     </AnimatePresence>

@@ -10,6 +10,7 @@ import WordListContainer from '../components/WordListContainer';
 import SettingsContainer from '../components/SettingsContainer';
 import AddWordContainer from '../components/AddWordContainer';
 import { useAuth0 } from '@auth0/auth0-react';
+
 import {
   fetchLists,
   setAddError,
@@ -17,12 +18,17 @@ import {
   setIsAddErrorVis,
 } from '../actions';
 import axios from 'axios';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+import { setUser } from '../actions';
 
 const PracticePage = (props) => {
   const {
     isDataLoading,
     fetchLists,
     addError,
+    setUser,
+    setLoading,
     setAddError,
     isAddErrorVis,
     setIsAddErrorVis,
@@ -30,89 +36,86 @@ const PracticePage = (props) => {
   const { isLoading, isAuthenticated, user } = useAuth0();
   const navigate = useNavigate();
 
+  useEffect(() => {});
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/practice');
-      axios
-        .head(`https://practice-my-spelling.herokuapp.com/users/${user.sub}`)
-        .then((response) => {
-          if (response.status === 200) {
-            fetchLists();
-          }
-        })
-        .catch((error) => {
-          const status = error.response.status;
-          if (status === 404) {
-            axios.post(`https://practice-my-spelling.herokuapp.com/users/`, {
-              id: user.sub,
-              lists: [
-                {
-                  name: 'defaultList',
-                  list: [],
-                },
-              ],
-            });
-          }
-        });
+      setUser(user.sub);
+      fetchLists();
+    } else if (!isLoading) {
+      setLoading(false);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isLoading]);
 
-  if (isLoading || isDataLoading) {
-    return <div>Loading....</div>;
-  }
-
-  return (
-    <React.Fragment>
-      <Navbar />
-      <div className="container-fluid py-4 mb-2">
-        <div className="row h-100 mx-0 mb-3 g-4">
-          <div
-            id="primary-container"
-            style={{ flex: '1 0 75%' }}
-            className="ps-lg-0 wrap-item text-light"
-          >
-            <div className="px-3 py-4 h-100 main-container-p bg-gray rounded-3">
-              <div className="pb-5">
-                <Logo width="400px" addClass="img-fluid mx-auto d-block" />
-                <h5 className="text-light text-center lead mt-3">
-                  Practice spelling words over & over!
-                </h5>
-                {!isAuthenticated && (
-                  <div class="pop-up">
-                    <i class="bi bi-info-circle-fill pe-1"></i> Sign in now to
-                    save your wordlist!
-                  </div>
-                )}
-              </div>
-
-              <SettingsContainer />
-              <AddWordContainer exitBeforeEnter={true} />
-              <motion.div
-                initial={{ height: 0 }}
-                animate={{ height: isAddErrorVis ? '80px' : 0 }}
-                transition={{ delay: !isAddErrorVis && 0.2, duration: 0.2 }}
-                className=" d-flex justify-content-center align-items-center"
-              >
-                <AnimatePresence
-                  exitBeforeEnter={true}
-                  onExitComplete={() => setAddError('')}
-                >
-                  {isAddErrorVis && (
-                    <RenderError
-                      error={addError}
-                      onClick={() => setIsAddErrorVis(false)}
-                    />
-                  )}
-                </AnimatePresence>
-              </motion.div>
-              <SpellingContainer />
-            </div>
-          </div>
-          <WordListContainer />
+  useEffect(() => {
+    console.log('isAuthenticated: ', isAuthenticated);
+    console.log('isLoading: ', isLoading);
+    console.log('isDataLoading: ', isDataLoading);
+  }, [isAuthenticated, isLoading, isDataLoading]);
+  if (isDataLoading || isLoading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center h-100 w-100">
+        <div
+          className="spinner-border text-light "
+          style={{ width: '4rem', height: '4rem' }}
+          role="status"
+        >
+          <span className="visually-hidden">Loading...</span>
         </div>
       </div>
-    </React.Fragment>
-  );
+    );
+  } else
+    return (
+      <div className="d-flex flex-column  h-100">
+        <Navbar />
+        <div className="container-fluid h-100 mb-3">
+          <div className="row g-3 h-100">
+            <div className="col-lg-8 col-12 order-lg-1 order-1">
+              <div className=" h-100">
+                <div className="px-3 py-4 h-100 main-container-p bg-gray rounded-3 w-100">
+                  <div className="pb-5">
+                    <Logo width="400px" addClass="img-fluid mx-auto d-block" />
+                    <h5 className="text-light text-center lead mt-3">
+                      Practice spelling words over & over!
+                    </h5>
+                    {!isAuthenticated && (
+                      <div className="pop-up text-light">
+                        <i className="bi bi-info-circle-fill pe-1 "></i> Sign in
+                        now to save your wordlist!
+                      </div>
+                    )}
+                  </div>
+
+                  <SettingsContainer />
+                  <AddWordContainer exitBeforeEnter={true} />
+                  <motion.div
+                    initial={{ height: 0 }}
+                    animate={{ height: isAddErrorVis ? '80px' : 0 }}
+                    transition={{ delay: !isAddErrorVis && 0.2, duration: 0.2 }}
+                    className=" d-flex justify-content-center align-items-center"
+                  >
+                    <AnimatePresence
+                      exitBeforeEnter={true}
+                      onExitComplete={() => setAddError('')}
+                    >
+                      {isAddErrorVis && (
+                        <RenderError
+                          error={addError}
+                          onClick={() => setIsAddErrorVis(false)}
+                        />
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                  <SpellingContainer />
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-12 order-lg-2 order-2 h-100">
+              <WordListContainer />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
 };
 const mapStateToProps = (state) => {
   return {
@@ -128,6 +131,7 @@ export default connect(mapStateToProps, {
   setIsAddErrorVis,
   setAddError,
   fetchLists,
+  setUser,
 })(PracticePage);
 
 /*

@@ -12,7 +12,13 @@ const wordListReducer = (state = INTIAL_STATE, action) => {
     case 'DELETE_FROM_WORDLIST':
       return [...action.payload];
     case 'FETCH_LISTS':
-      return [...action.payload];
+      console.log(action.payload);
+      return [
+        {
+          name: 'defaultList',
+          list: action.payload,
+        },
+      ];
     default:
       return state;
   }

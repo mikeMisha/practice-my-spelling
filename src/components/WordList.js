@@ -3,13 +3,20 @@ import { connect } from 'react-redux';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 
 const WordList = ({ wordList, onWordClick, onDelete }) => {
-  const [isListEmpty, setIsListEmpty] = useState(true);
+  const [isListEmpty, setIsListEmpty] = useState(null);
+
+  useEffect(() => {
+    if (wordList.length === 0) {
+      setIsListEmpty(true);
+    } else {
+      setIsListEmpty(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (wordList.length > 0) {
       setIsListEmpty(false);
     }
-    renderWordList();
   }, [wordList]);
 
   const renderWordList = () => {
@@ -25,7 +32,7 @@ const WordList = ({ wordList, onWordClick, onDelete }) => {
       return (
         <motion.li
           key={word}
-          className="list-item"
+          className="list-item d-flex  justify-content-center align-items-center"
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
@@ -49,7 +56,7 @@ const WordList = ({ wordList, onWordClick, onDelete }) => {
       <motion.div
         id="word-list"
         style={{ minWidth: '250px' }}
-        className="sidebar-list word-list-m "
+        className={isListEmpty ? 'w-100 text-light' : 'w-100 sidebar-list'}
       >
         <AnimatePresence
           onExitComplete={() => {

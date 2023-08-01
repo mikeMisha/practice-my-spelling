@@ -19,7 +19,7 @@ const Navbar = ({ signIn, signOut }) => {
   }, [isAuthenticated]);
 
   return (
-    <div className=" mynavbar d-flex navbar navbar-expand-md bg-gray rounded-3 px-4 m-2">
+    <div className=" mynavbar d-flex navbar navbar-expand-md bg-gray rounded-3 px-4 ">
       <Link to="/" className="navbar-brand">
         <Logo height={'30px'} />
       </Link>

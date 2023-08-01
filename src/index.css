@@ -1,3 +1,11 @@
+html {
+  height: 100vh;
+}
+body,
+#root {
+  height: 100%;
+  overflow-y: auto;
+}
 .bg-img {
   position: reletive;
   top: 0;
@@ -59,8 +67,6 @@ body {
   text-align: center;
   padding-left: 0 !important;
   font-size: 2em;
-  border: 2px solid white;
-  border-radius: 10px;
 }
 
 .word-list-m {
@@ -68,7 +74,8 @@ body {
 }
 
 .word-btn {
-  overflow-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
   background-color: transparent;
   color: white;
   border-style: none;
@@ -108,6 +115,7 @@ body {
 
 .mynavbar {
   justify-content: center;
+  margin: 12px;
 }
 .navbar-brand {
   margin-bottom: 10px;

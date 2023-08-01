@@ -27,7 +27,7 @@ const SettingsContainer = (props) => {
           infinity
         />
       </div>
-      <div className="col-6 d-flex justify-content-center ">
+      <div className="col-6 d-flex justify-content-center text-light">
         <ToggleMode
           checked={isShuffleMode}
           onSwitch={onToggleClick}

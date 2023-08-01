@@ -80,9 +80,9 @@ const AddWordContainer = (props) => {
   const onInputChange = (e) => setInputValue(e.target.value);
 
   return (
-    <div>
-      <small className="d-flex justify-content-center pt-4 pb-1">
-        <i className="bi bi-info-circle-fill pe-1"></i> You can add more then
+    <div className="text-light">
+      <small className="d-flex justify-content-center pt-4 pb-1 ">
+        <i className="bi bi-info-circle-fill pe-1 "></i> You can add more then
         one word at a time by seprating words with commas or spaces.
       </small>
       <div className="d-flex justify-content-center pt-1">

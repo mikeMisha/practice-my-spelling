@@ -4,7 +4,7 @@ const INTIAL_STATE = {
   shuffledList: [],
   userTextInput: '',
   currentRep: null,
-  isLoading: false,
+  isLoading: true,
   cachedList: {},
 };
 
@@ -21,10 +21,14 @@ const session = (state = INTIAL_STATE, { type, payload }) => {
     case 'SET_CURR_REP':
       return { ...state, currentRep: payload };
     case 'SET_LOADING':
-      return { ...state, isLoading: !state.isLoading };
+      return { ...state, isLoading: payload };
     case 'FETCH_LISTS':
-      const defaultList = payload.find((list) => list.name === 'defaultList');
-      return { ...state, currentWordList: defaultList };
+      // const defaultList = payload.find((list) => list.name === 'defaultList');
+      console.log(payload);
+      return {
+        ...state,
+        currentWordList: { name: 'defaultList', list: payload },
+      };
     case 'SET_SHUFFLE_LIST':
       return { ...state, shuffledList: payload };
     case 'SET_CACHED_LIST':

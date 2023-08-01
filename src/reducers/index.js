@@ -7,7 +7,7 @@ import errors from './errors';
 
 export default combineReducers({
   userAppSettings: userAppSettingsReducer,
-  lists: wordListReducer,
+  /*  lists: wordListReducer, */
   session: session,
   auth: authReducer,
   errors: errors,
