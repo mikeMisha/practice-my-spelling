@@ -55,7 +55,7 @@ const LandingPage = () => {
                 Practice your spelling anytime anywhere.
               </motion.div>
               <motion.p
-                className="banner-quote text-light"
+                className="banner-quote text-light ms-lg-5 mt-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2 }}
