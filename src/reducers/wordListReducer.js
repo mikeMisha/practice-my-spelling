@@ -12,7 +12,6 @@ const wordListReducer = (state = INTIAL_STATE, action) => {
     case 'DELETE_FROM_WORDLIST':
       return [...action.payload];
     case 'FETCH_LISTS':
-      console.log(action.payload);
       return [
         {
           name: 'defaultList',

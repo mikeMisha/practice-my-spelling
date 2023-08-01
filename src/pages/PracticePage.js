@@ -46,11 +46,6 @@ const PracticePage = (props) => {
     }
   }, [isAuthenticated, isLoading]);
 
-  useEffect(() => {
-    console.log('isAuthenticated: ', isAuthenticated);
-    console.log('isLoading: ', isLoading);
-    console.log('isDataLoading: ', isDataLoading);
-  }, [isAuthenticated, isLoading, isDataLoading]);
   if (isDataLoading || isLoading) {
     return (
       <div className="d-flex justify-content-center align-items-center h-100 w-100">
