@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { deleteFromWordList, setWordIndex, setSpellInput } from '../actions';
 import { motion, AnimatePresence } from 'framer-motion';
 import AddWordContainer from '../components/AddWordContainer';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const WordListContainer = (props) => {
+  const { isAuthenticated } = useAuth0();
   const { deleteFromWordList, setWordIndex, setSpellInput, lists } = props;
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const WordListContainer = (props) => {
         </h2>
         <WordList onWordClick={onWordClick} onDelete={onWordDelete} />
 
-        {props.isListPop && (
+        {props.isListPop && !isAuthenticated && (
           <div className="d-flex mt-auto ">
             <div className="pop-up text-light w-100 py-3">
               <i className="bi bi-info-circle-fill pe-1 "></i> Sign in now to
