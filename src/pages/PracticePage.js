@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
-import Navbar from '../components/Navbar';
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo';
 import SpellingContainer from '../components/SpellingContainer';
 import WordListContainer from '../components/WordListContainer';
-import SettingsContainer from '../components/SettingsContainer';
 import { useAuth0 } from '@auth0/auth0-react';
 import { fetchLists, setLoading } from '../actions';
 import { setUser } from '../actions';
@@ -99,7 +96,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   setLoading,
-
   fetchLists,
   setUser,
 })(PracticePage);

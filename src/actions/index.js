@@ -16,17 +16,18 @@ export const signIn = (userId) => {
     const docSnap = await getDoc(userDoc);
 
     if (!docSnap.exists()) {
-      await setDoc(userDoc, {})
+      await setDoc(userDoc, { wordList: [] })
         .then(() => {
           console.log('User added successfully!');
+          dispatch({ type: 'SIGN_IN', payload: userId });
         })
         .catch((error) => {
           console.error('Error adding user: ', error);
         });
     } else {
       console.log('User already exists!');
+      dispatch({ type: 'SIGN_IN', payload: userId });
     }
-    dispatch({ type: 'SIGN_IN', payload: userId });
   };
 };
 
@@ -88,7 +89,7 @@ export const createWordList = ({
     if (isSignedIn) {
       const userDoc = doc(db, 'users', userId);
       await updateDoc(userDoc, {
-        wordlist: arrayUnion(...defaultList),
+        wordList: arrayUnion(...defaultList),
       })
         .then(() => {
           console.log('Words added successfully to the wordlist!');
@@ -96,33 +97,7 @@ export const createWordList = ({
         .catch((error) => {
           console.error('Error adding words to the wordlist: ', error);
         });
-      /* let lists = [...getState().lists];
 
-      if (lists.every((list) => list.name !== addedList.name)) {
-        lists.push(addedList);
-      } else {
-        lists = lists.map((savedList) => {
-          return savedList.name === addedList.name
-            ? {
-                name: addedList.name,
-                list: [...savedList.list, ...addedList.list],
-              }
-            : savedList;
-        });
-      }
-
-      const response = await axios.put(
-        process.env.REACT_APP_HEROKU_DB + userId,
-        { lists }
-      );
-
-      dispatch({
-        type: 'CREATE_WORDLIST',
-        payload: {
-          lists: response.data.lists,
-          createdList: lists.find((list) => list.name === addedList.name),
-        },
-      }); */
       dispatch({
         type: 'CREATE_WORDLIST',
         payload: {
@@ -198,10 +173,10 @@ export const deleteFromWordList = (deletedWord) => {
         wordlist: arrayRemove(deletedWord),
       })
         .then(() => {
-          console.log('Word removed successfully from the wordlist!');
+          console.log('Word removed successfully from the word list!');
         })
         .catch((error) => {
-          console.error('Error removing word from the wordlist: ', error);
+          console.error('Error removing word from the word list: ', error);
         });
       dispatch({ type: 'DELETE_FROM_WORDLIST', payload: filteredCurrentList });
     }
@@ -251,13 +226,12 @@ export const fetchLists = () => async (dispatch, getState) => {
     return;
   }
   dispatch({ type: 'SET_LOADING', payload: true });
-
   const userDoc = doc(db, 'users', userId);
   const docSnap = await getDoc(userDoc);
   if (docSnap.exists()) {
     dispatch({
       type: 'FETCH_LISTS',
-      payload: docSnap.data().wordlist,
+      payload: docSnap.data().wordList,
     });
     dispatch({ type: 'SET_LOADING', payload: false });
   } else {
