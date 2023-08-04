@@ -24,6 +24,7 @@ const CurrentWord = (props) => {
         correctLetters.push(userInput[i]);
         setInvInputColor('');
       } else {
+        if (i === 0) correctLetters.push(wordList[index][0]);
         typingColor = 'text-danger';
         setInvInputColor('text-danger');
         break;
@@ -34,9 +35,9 @@ const CurrentWord = (props) => {
     return (
       <div
         id="spell-word"
-        className={`spell-word text-wrap text-dark text-center px-5 fs-3 ${
+        className={`spell-word text-wrap text-dark text-center px-5 fs-1 ${
           unSpelledChar.length === 0 ? 'bg-success' : 'bg-light'
-        } py-1`}
+        } ${typingColor === 'text-danger' ? 'bg-danger' : ''} py-1`}
         style={{ transition: 'background 0.2s', fontWeight: '600' }}
       >
         <span className={typingColor}>{correctLetters.join('')}</span>

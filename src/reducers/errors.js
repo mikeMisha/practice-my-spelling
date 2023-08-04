@@ -1,6 +1,12 @@
+const wasInitialNoticeShown = JSON.parse(
+  localStorage.getItem('wasInitialNoticeShown')
+);
+
 const INTIAL_STATE = {
-  addError: null,
-  isAddErrorVis: false,
+  addError: wasInitialNoticeShown
+    ? null
+    : '\u24D8 You can add more then one word at a time by separating words with commas or spaces.',
+  isAddErrorVis: !wasInitialNoticeShown,
 };
 
 const errors = (state = INTIAL_STATE, { type, payload }) => {

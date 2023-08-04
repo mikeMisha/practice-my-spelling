@@ -42,7 +42,6 @@ const mapStateToProps = (state) => {
   return {
     reps: state.userAppSettings.reps,
     isShuffleMode: state.userAppSettings.isShuffleMode,
-    currentList: state.session.currentWordList,
     lists: state.lists,
     shuffledList: state.session.shuffledList,
   };

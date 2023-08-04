@@ -313,6 +313,7 @@ export const setAddError = (errorText) => {
   };
 };
 export const setIsAddErrorVis = (errorText) => {
+  localStorage.setItem('wasInitialNoticeShown', true);
   return {
     type: 'IS_ADD_ERROR',
     payload: errorText,
@@ -328,20 +329,3 @@ export const setCachedList = (list) => {
     });
   };
 };
-/*
-
-export const createWordList = (wordList) => async (dispatch,getState) => {
-    const response = await axios.post('https://practice-my-spelling.herokuapp.com/users/',{wordList})
-    dispatch({type:'CREATE_WORDLIST',payload:response.data})
-}
-
-export const updateWordList = (wordList) => async (dispatch,getState) => {
-    const response = await axios.patch('https://practice-my-spelling.herokuapp.com/users/1',{wordList})
-    dispatch({type:'UPDATE_WORDLIST',payload:response.data})
-}
-
-export const fetchWordList = (id) => async (dispatch,getState) => {
-    const response = await axios.get('https://practice-my-spelling.herokuapp.com/users/1')
-    dispatch({type:'FETCH_WORDLIST',payload:response.data})
-}
-*/

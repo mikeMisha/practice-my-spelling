@@ -6,6 +6,7 @@ import CurrentWord from './CurrentWord';
 import RepCounter from './RepCounter';
 import { connect } from 'react-redux';
 import { setNextWordIndex, setCurrentRep, setSpellInput } from '../actions';
+import SettingsContainer from './SettingsContainer';
 
 const SpellingContainer = (props) => {
   const {
@@ -47,7 +48,7 @@ const SpellingContainer = (props) => {
       height: 0,
     },
     visible: {
-      height: '300px',
+      height: '370px',
     },
     exit: {
       height: 0,
@@ -92,7 +93,7 @@ const SpellingContainer = (props) => {
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="mt-4"
+          className=""
         >
           <motion.div
             variants={dropInContainer}
@@ -101,18 +102,21 @@ const SpellingContainer = (props) => {
             exit="exit"
             className={`d-flex flex-column align-items-center `}
           >
+            <div className="w-100 mb-4">
+              <SettingsContainer />
+            </div>
             <div>
               <RepCounter />
             </div>
 
-            <div className="mt-4">
+            <div className="mt-5">
               <CurrentWord setInvInputColor={setInvInputColor} />
             </div>
 
-            <div className="mb-3">
+            <div className="mb-5">
               <NumTracker current={wordIndex + 1} total={wordList.length} />
             </div>
-            <div className="my-3">
+            <div className="">
               <TypingInput invInputColor={invInputColor} />
             </div>
           </motion.div>

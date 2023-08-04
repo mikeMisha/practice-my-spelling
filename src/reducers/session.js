@@ -23,7 +23,6 @@ const session = (state = INTIAL_STATE, { type, payload }) => {
     case 'SET_LOADING':
       return { ...state, isLoading: payload };
     case 'FETCH_LISTS':
-      // const defaultList = payload.find((list) => list.name === 'defaultList');
       return {
         ...state,
         currentWordList: { name: 'defaultList', list: payload },

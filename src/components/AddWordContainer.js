@@ -7,6 +7,8 @@ import {
   setIsAddErrorVis,
   setCurrentList,
 } from '../actions';
+import RenderError from '../components/RenderError';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const AddWordContainer = (props) => {
   const {
@@ -15,6 +17,8 @@ const AddWordContainer = (props) => {
     userId,
     createWordList,
     setAddError,
+    isAddErrorVis,
+    addError,
     setIsAddErrorVis,
   } = props;
 
@@ -80,11 +84,27 @@ const AddWordContainer = (props) => {
   const onInputChange = (e) => setInputValue(e.target.value);
 
   return (
-    <div className="text-light">
-      <small className="d-flex justify-content-center pt-4 pb-1 ">
-        <i className="bi bi-info-circle-fill pe-1 "></i> You can add more then
-        one word at a time by seprating words with commas or spaces.
-      </small>
+    <div className="text-light ">
+      <div className="d-flex justify-content-center flex-column   py-1 ">
+        <motion.div
+          initial={{ height: 0 }}
+          animate={{ height: isAddErrorVis ? '80px' : 0 }}
+          transition={{ delay: !isAddErrorVis && 0.2, duration: 0.2 }}
+          className=" d-flex justify-content-center align-items-center m-2"
+        >
+          <AnimatePresence
+            exitBeforeEnter={true}
+            onExitComplete={() => setAddError('')}
+          >
+            {isAddErrorVis && (
+              <RenderError
+                error={addError}
+                onClick={() => setIsAddErrorVis(false)}
+              />
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </div>
       <div className="d-flex justify-content-center pt-1">
         <AddWordForm
           onFormSubmit={onFormSubmit}
@@ -101,6 +121,8 @@ const mapStateToProps = (state) => {
     wordList: state.session.currentWordList.list,
     isSignedIn: state.auth.isSignedIn,
     userId: state.auth.userId,
+    isAddErrorVis: state.errors.isAddErrorVis,
+    addError: state.errors.addError,
   };
 };
 
