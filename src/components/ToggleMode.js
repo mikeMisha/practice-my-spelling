@@ -2,7 +2,7 @@ import React from 'react';
 
 const ToggleSwitch = (props) => {
   return (
-    <div className="form-check form-switch ">
+    <div className=" form-switch ">
       <input
         checked={props.checked}
         onChange={props.onSwitch}
@@ -11,7 +11,7 @@ const ToggleSwitch = (props) => {
         id="toggleSwitch"
       />
       <label
-        className="form-check-label text-nowrap px-1"
+        className="form-check-label text-nowrap ms-2"
         htmlFor="flexSwitchCheckDefault"
       >
         {props.label}

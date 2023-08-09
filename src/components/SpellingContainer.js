@@ -102,9 +102,7 @@ const SpellingContainer = (props) => {
             exit="exit"
             className={`d-flex flex-column align-items-center `}
           >
-            <div className="w-100 mb-4">
-              <SettingsContainer />
-            </div>
+            <div className="w-100 mb-4"></div>
             <div>
               <RepCounter />
             </div>

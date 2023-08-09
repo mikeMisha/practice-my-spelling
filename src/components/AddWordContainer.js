@@ -84,13 +84,15 @@ const AddWordContainer = (props) => {
   const onInputChange = (e) => setInputValue(e.target.value);
 
   return (
-    <div className="text-light ">
-      <div className="d-flex justify-content-center flex-column   py-1 ">
+    <div className="text-light  my-2">
+      <div className="d-flex justify-content-center flex-column py-1 ">
         <motion.div
-          initial={{ height: 0 }}
-          animate={{ height: isAddErrorVis ? '80px' : 0 }}
+          animate={{
+            height: isAddErrorVis ? '80px' : 0,
+            marginBottom: isAddErrorVis ? '8px' : 0,
+          }}
           transition={{ delay: !isAddErrorVis && 0.2, duration: 0.2 }}
-          className=" d-flex justify-content-center align-items-center m-2"
+          className={'d-flex justify-content-center align-items-center'}
         >
           <AnimatePresence
             exitBeforeEnter={true}
@@ -105,7 +107,7 @@ const AddWordContainer = (props) => {
           </AnimatePresence>
         </motion.div>
       </div>
-      <div className="d-flex justify-content-center pt-1">
+      <div className="d-flex justify-content-center pb-2">
         <AddWordForm
           onFormSubmit={onFormSubmit}
           onInputChange={onInputChange}

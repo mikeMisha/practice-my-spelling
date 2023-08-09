@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Logo from '../components/Logo';
 import SpellingContainer from '../components/SpellingContainer';
@@ -8,10 +8,25 @@ import { fetchLists, setLoading } from '../actions';
 import { setUser } from '../actions';
 import LoginButton from '../components/LoginButton';
 import LogoutButton from '../components/LogoutButton';
+import SettingsContainer from '../components/SettingsContainer';
 
 const PracticePage = (props) => {
   const { isDataLoading, fetchLists, setUser, setLoading } = props;
   const { isLoading, isAuthenticated, user } = useAuth0();
+
+  const [isMobileLayout, setIsMobileLayout] = useState(window.innerWidth < 992);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileLayout(window.innerWidth < 992);
+    };
+
+    // Add event listener on mount
+    window.addEventListener('resize', handleResize);
+
+    // Remove event listener on unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -40,35 +55,32 @@ const PracticePage = (props) => {
         <div className="container-fluid h-100 p-3">
           <div className="row g-3 h-100">
             <div className="col-lg-8 col-12 order-lg-1 order-1">
-              <div className=" h-100">
+              <div className="h-100">
                 <div
                   style={{ minHeight: '650px' }}
-                  className="px-3 py-4 h-100 main-container-p bg-gray rounded-3 w-100 position-relative d-flex flex-column justify-content-center"
+                  className="px-3 py-4 h-100 main-container-p bg-gray position-relative rounded-3 w-100  d-flex flex-column justify-content-center"
                 >
-                  <div className="pb-5 ">
-                    <div>
-                      <Logo
-                        width="400px"
-                        addClass="img-fluid mx-auto d-block"
-                      />
-                      <h5 className="text-light text-center lead mt-3">
-                        Practice spelling words over & over!
-                      </h5>
-
-                      {!isAuthenticated && !props.isListPop && (
-                        <div className="pop-up text-light fs-5  mt-5">
-                          <i className="bi bi-info-circle-fill pe-1 "></i> Add
-                          words to the list on the right to start practicing!
-                        </div>
-                      )}
-                    </div>
+                  <div className="position-sm-absolute mb-auto mb-sm-0 top-0 end-0 start-0 d-flex justify-content-between px-3 pt-3 flex-column flex-sm-row align-items-center gap-3">
+                    <Logo width="150px" addClass="img-fluid " />
+                    <SettingsContainer />
                     <div
-                      className="position-absolute"
-                      style={{ top: '20px', left: '20px' }}
+                      style={{ width: '150px' }}
+                      className="d-flex justify-content-end align-items-center position-absolute-only-sm top-0 end-0 pe-2 pt-2 pt-sm-0 pe-sm-0"
                     >
                       {isAuthenticated ? <LogoutButton /> : <LoginButton />}
                     </div>
                   </div>
+
+                  {!isAuthenticated && !props.isListPop && (
+                    <div className="d-flex justify-content-center pop-up-design">
+                      <div className=" text-light fs-5  my-4 px-2 text-wrap">
+                        <i className="bi bi-info-circle-fill pe-1 "></i> Add
+                        words to the list on the{' '}
+                        {isMobileLayout ? 'bottom' : 'right'} to start
+                        practicing!
+                      </div>
+                    </div>
+                  )}
 
                   <SpellingContainer />
                 </div>

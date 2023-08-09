@@ -17,23 +17,20 @@ const SettingsContainer = (props) => {
   };
 
   return (
-    <div className="row">
-      <div className="d-flex col-6 justify-content-center">
-        <NumDropdown
-          onChange={onDropdownChange}
-          label="Reps"
-          value={reps}
-          count={10}
-          infinity
-        />
-      </div>
-      <div className="col-6 d-flex justify-content-center text-light">
-        <ToggleMode
-          checked={isShuffleMode}
-          onSwitch={onToggleClick}
-          label="Shuffle Mode"
-        />
-      </div>
+    <div className="d-flex text-light gap-4 align-items-center">
+      <NumDropdown
+        onChange={onDropdownChange}
+        label="Reps"
+        value={reps}
+        count={10}
+        infinity
+      />
+
+      <ToggleMode
+        checked={isShuffleMode}
+        onSwitch={onToggleClick}
+        label="Shuffle Mode"
+      />
     </div>
   );
 };

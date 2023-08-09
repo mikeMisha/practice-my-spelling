@@ -121,15 +121,31 @@ body {
   margin-bottom: 10px;
 }
 
+@media (min-width: 576px) {
+  /* Bootstrap 5's small (sm) breakpoint */
+  .position-sm-absolute {
+    position: absolute;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .position-absolute-only-sm {
+    position: absolute;
+  }
+}
+
 .pop-up {
   text-align: center;
-  background-color: #0e6efd;
-  border: 1px solid #e2e2e2;
-  border-radius: 5px;
   padding: 0.5rem;
   width: min-content;
   white-space: nowrap;
   margin: auto;
+}
+
+.pop-up-design {
+  background-color: #0e6efd;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
 }
 
 /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */

@@ -22,7 +22,7 @@ const NumDropdown = (props) => {
   };
 
   return (
-    <div>
+    <div className="d-flex align-items-center">
       <label className="text-light px-1">{props.label}:</label>
       <select
         value={props.value}
