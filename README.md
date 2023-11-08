@@ -113,7 +113,7 @@ You can find detailed instructions on using Create React App and many tips in [i
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/mikemisha/practice-my-spelling/blob/main/LICENSE.md) for more information.
+Distributed under the MIT License.
 
 ## Authors
 
