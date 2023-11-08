@@ -13,7 +13,7 @@
     <a href="https://github.com/mikemisha/practice-my-spelling"><strong>Explore the docs »</strong></a>
     <br/>
     <br/>
-    <a href="https://michaelkarabach.com/mp4/spelling-demo.mp4">View Demo</a>
+    <a href="https://practicemyspelling.com/">View Website</a>
     .
     <a href="https://github.com/mikemisha/practice-my-spelling/issues">Report Bug</a>
     .
